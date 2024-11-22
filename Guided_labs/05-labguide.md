@@ -1,6 +1,6 @@
 # **Create PersistentVolumes (PV) and PersistentVolumeClaims (PVC) for Data Storage**
 
-## Table of Contents
+## **Table of Contents**
 
 1. [**Introduction**](#introduction)  
 2. [**Problem Statement**](#problem-statement)  
@@ -13,7 +13,7 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 In Kubernetes, **PersistentVolumes (PV)** and **PersistentVolumeClaims (PVC)** provide a way to manage storage resources for your applications. Persistent storage allows data to be retained even if the pod is terminated or restarted. This is critical for stateful applications like databases or any app that requires data persistence across pod restarts.
 
@@ -24,13 +24,13 @@ In this lab, we will create a PersistentVolume and a PersistentVolumeClaim, and 
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
 Many applications require persistent data storage that survives pod restarts and scaling events. To solve this, Kubernetes provides PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs) as a means to allocate and consume storage resources within the cluster. This lab will guide you through the steps required to configure persistent storage for an NGINX application.
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 Completion of all previous lab guides (up to Lab Guide-04) is required before proceeding with Lab Guide-05.
 
 - A running Kubernetes cluster on Minikube.
@@ -38,9 +38,9 @@ Completion of all previous lab guides (up to Lab Guide-04) is required before pr
 
 ---
 
-## Setup Instructions
+## **Setup Instructions**
 
-### Step 1: Create a PersistentVolume (PV)
+### **Step 1: Create a PersistentVolume (PV)**
 
 A **PersistentVolume** represents a piece of storage in the cluster. This storage can be provided by cloud services, local disk, NFS, or other means.
 
@@ -84,7 +84,7 @@ A **PersistentVolume** represents a piece of storage in the cluster. This storag
    ![images](./images/k8s-26.png)
 
 
-### Step 2: Create a PersistentVolumeClaim (PVC)
+### **Step 2: Create a PersistentVolumeClaim (PVC)**
 
 A **PersistentVolumeClaim** is a request for storage by a user. The PVC must match the properties of the PV, such as storage size and access modes.
 
@@ -130,7 +130,7 @@ A **PersistentVolumeClaim** is a request for storage by a user. The PVC must mat
 
    The status should show `Bound`, meaning the PVC has successfully claimed the PV.
 
-### Step 3: Use the PVC in a Pod
+### **Step 3: Use the PVC in a Pod**
 
 Now that the PVC is created and bound to the PV, we can use it in a pod to provide persistent storage for the application.
 
@@ -207,7 +207,7 @@ Now that the PVC is created and bound to the PV, we can use it in a pod to provi
 
 ---
 
-## References
+## **References**
 
 - [Kubernetes Persistent Volumes Documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 - [Kubernetes Persistent Volume Claims Documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims)

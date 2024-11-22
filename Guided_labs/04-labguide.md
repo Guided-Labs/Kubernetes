@@ -1,6 +1,6 @@
 # **Create and Use ConfigMaps and Secrets in a Kubernetes Pod**
 
-## Table of Contents
+## **Table of Contents**
 
 1. [**Introduction**](#introduction)  
 2. [**Problem Statement**](#problem-statement)  
@@ -13,7 +13,7 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 Kubernetes provides two essential resources for managing configuration data and sensitive information: **ConfigMaps** and **Secrets**. These resources allow you to externalize application configuration and securely store sensitive data such as passwords, API keys, and other credentials.
 
@@ -27,7 +27,7 @@ In this lab, you will learn how to:
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
 As your applications grow, it becomes important to separate the application code from its configuration data. You may also need to store sensitive information securely, without hardcoding it in your application.
 
@@ -35,7 +35,7 @@ This lab aims to show you how to manage this external configuration through **Co
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 Completion of all previous lab guides (up to Lab Guide-03) is required before proceeding with Lab Guide-04.
 
 - A running Kubernetes cluster on Minikube.
@@ -44,9 +44,9 @@ Completion of all previous lab guides (up to Lab Guide-03) is required before pr
 
 ---
 
-## Setup Instructions
+## **Setup Instructions**
 
-### Step 1: Create a ConfigMap
+### **Step 1: Create a ConfigMap**
 
 A ConfigMap is a way to store key-value pairs for configuration. In this example, we will create a ConfigMap that stores some environment variables for an NGINX pod.
 
@@ -84,7 +84,7 @@ A ConfigMap is a way to store key-value pairs for configuration. In this example
    ```
    ![images](./images/k8s-20.png)
 
-### Step 2: Create a Secret
+### **Step 2: Create a Secret**
 
 A Secret is used to store sensitive information like passwords or API keys. We will create a Secret to store a basic authentication password for NGINX.
 
@@ -131,7 +131,7 @@ A Secret is used to store sensitive information like passwords or API keys. We w
 
    ![images](./images/k8s-22.png)
 
-### Step 3: Use ConfigMaps and Secrets in a Pod
+### **Step 3: Use ConfigMaps and Secrets in a Pod**
 
 Next, we'll create an NGINX pod that uses the ConfigMap and Secret we just created. The ConfigMap will be used for environment variables, and the Secret will be mounted as a file.
 
@@ -223,7 +223,7 @@ Next, we'll create an NGINX pod that uses the ConfigMap and Secret we just creat
 
 ---
 
-## References
+## **References**
 
 - [Kubernetes ConfigMaps Documentation](https://kubernetes.io/docs/concepts/configuration/configmap/)
 - [Kubernetes Secrets Documentation](https://kubernetes.io/docs/concepts/configuration/secret/)

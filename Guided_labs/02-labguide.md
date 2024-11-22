@@ -1,6 +1,6 @@
 # **Deploy a Web Application Using a Kubernetes Deployment and Service**
 
-## Table of Contents
+## **Table of Contents**
 
 1. [**Introduction**](#introduction)  
 2. [**Problem Statement**](#problem-statement)  
@@ -13,7 +13,7 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 This guide is designed to help users set up and deploy web applications in a local Kubernetes environment using Minikube on a Windows system. Minikube is an open-source tool that runs a single-node Kubernetes cluster on your local machine, providing an easy-to-use environment for Kubernetes learning, development, and testing.
 
@@ -25,13 +25,13 @@ This guide is designed to help users set up and deploy web applications in a loc
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
 In this lab, we will deploy an NGINX-based web application on a local Kubernetes cluster using **Minikube**. We will create a Kubernetes Deployment to manage the application’s lifecycle and a Service to expose it.
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 Completion of all previous lab guides (up to Lab Guide-01) is required before proceeding with Lab Guide-02.
 
 - Minikube is running on your Windows system.
@@ -39,9 +39,9 @@ Completion of all previous lab guides (up to Lab Guide-01) is required before pr
 
 ---
 
-## Setup Instructions
+## **Setup Instructions**
 
-### Step 1: Create a Deployment for NGINX
+### **Step 1: Create a Deployment for NGINX**
 
 We will start by deploying NGINX using a Kubernetes Deployment. The Deployment ensures that NGINX is running in a stable state with three replicas.
 
@@ -100,7 +100,7 @@ We will start by deploying NGINX using a Kubernetes Deployment. The Deployment e
 
    You should see three pods running for the `nginx-deployment`.
 
-### Step 2: Create a Service to Expose NGINX
+### **Step 2: Create a Service to Expose NGINX**
 
 Next, we will create a Service to expose the NGINX application inside the cluster. A **ClusterIP** service will be used to make the application accessible to other pods within the cluster.
 
@@ -148,7 +148,7 @@ Next, we will create a Service to expose the NGINX application inside the cluste
 
    You should see the `nginx-service` listed.
 
-### Step 3: Accessing the NGINX Application
+### **Step 3: Accessing the NGINX Application**
 
 Since this service is internal to the cluster, you can use `kubectl` to forward the local port to access NGINX from your browser.
 
@@ -171,7 +171,7 @@ Since this service is internal to the cluster, you can use `kubectl` to forward 
 
 ---
 
-## References
+## **References**
 
 - [Kubernetes Deployment Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - [Kubernetes Service Documentation](https://kubernetes.io/docs/concepts/services-networking/service/)

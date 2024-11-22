@@ -1,6 +1,6 @@
 # **Set up NetworkPolicies to Control Traffic Between Pods**
 
-## Table of Contents
+## **Table of Contents**
 
 1. [**Introduction**](#introduction)  
 2. [**Problem Statement**](#problem-statement)  
@@ -14,7 +14,7 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 In Kubernetes, **NetworkPolicies** allow you to control how pods communicate with each other and with other network endpoints. By default, pods are non-isolated and can communicate freely within a cluster. NetworkPolicies help secure your applications by limiting the traffic flow between pods based on rules you define.
 
@@ -27,7 +27,7 @@ In this lab, you will learn how to create a **NetworkPolicy** to restrict pod-to
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
 By default, Kubernetes allows unrestricted communication between all pods in a cluster. However, many applications require more restrictive network configurations. For example, you may want to prevent certain pods from receiving traffic from other pods or limit which services can communicate with a backend database. NetworkPolicies solve this by enabling fine-grained control over network traffic between pods.
 
@@ -37,7 +37,7 @@ In this lab, we will create an example where:
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 Completion of all previous lab guides (up to Lab Guide-05) is required before proceeding with Lab Guide-06.
 
 - A running Kubernetes cluster on Minikube.
@@ -46,9 +46,9 @@ Completion of all previous lab guides (up to Lab Guide-05) is required before pr
 
 ---
 
-## Setup Instructions
+## **Setup Instructions**
 
-### Step 1: Deploy the Application Pods
+### **Step 1: Deploy the Application Pods**
 
 First, we will deploy two simple NGINX pods in the same namespace. One will act as a client, and the other will act as a web server.
 
@@ -124,7 +124,7 @@ First, we will deploy two simple NGINX pods in the same namespace. One will act 
 
    ![images](./images/pod-1.png)
 
-### Step 2: Create a Service for the NGINX Server
+### **Step 2: Create a Service for the NGINX Server**
 
 In Kubernetes, pods are generally ephemeral, and DNS names for individual pods are not resolvable directly. To ensure that other pods can communicate with the `nginx-server` pod by name, we need to create a Service. The Service provides a stable DNS name and IP address for the NGINX server.
 
@@ -169,7 +169,7 @@ In Kubernetes, pods are generally ephemeral, and DNS names for individual pods a
 
 ---
 
-### Step 3: Create a NetworkPolicy to Restrict Traffic
+### **Step 3: Create a NetworkPolicy to Restrict Traffic**
 
 Now that the pods are running, we will create a NetworkPolicy that allows traffic only from the NGINX client to the NGINX server, and blocks all other inbound traffic to the server.
 
@@ -218,7 +218,7 @@ Now that the pods are running, we will create a NetworkPolicy that allows traffi
 
    ![images](./images/networkpolicy.png)
 
-### Step 4: Test the NetworkPolicy
+### **Step 4: Test the NetworkPolicy**
 
 With the NetworkPolicy in place, we can now test its effect on pod-to-pod communication.
 
@@ -281,7 +281,7 @@ With the NetworkPolicy in place, we can now test its effect on pod-to-pod commun
 
 ---
 
-## References
+## **References**
 
 - [Kubernetes NetworkPolicy Documentation](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
 - [Minikube Documentation](https://minikube.sigs.k8s.io/docs/start/)

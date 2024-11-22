@@ -1,6 +1,6 @@
 # **Set up a local Kubernetes cluster Lab Guide using Minikube**
 
-## Table of Contents
+## **Table of Contents**
 
 * [**Introduction**](#introduction)  
 * [**Problem Statement**](#problem-statement)  
@@ -13,28 +13,28 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 This guide outlines the steps required to set up a local Kubernetes cluster on a Windows system using either Minikube or Kind. By following the instructions, you will be able to create a Kubernetes cluster locally to practice deploying, managing, and testing applications.
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
 Setting up Kubernetes on Windows can be a challenging process due to differences in operating system architecture and compatibility issues with certain tools. This guide simplifies the setup process by offering clear, step-by-step instructions for creating a local Kubernetes cluster using Minikube or Kind, two widely-used solutions for running Kubernetes on a local machine.
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 
-### Software Requirements
+### **Software Requirements**
 
 - **Windows 10 or later**
 - **Docker Desktop for Windows** (for Kind)
 - **kubectl** (Kubernetes command-line tool)
 - **Windows Subsystem for Linux 2 (WSL2)**
 
-### Hardware Requirements
+### **Hardware Requirements**
 
 - **CPU**: Minimum 2 CPUs  
 - **Memory**: Minimum 4GB RAM (recommended 8GB or more)  
@@ -42,9 +42,9 @@ Setting up Kubernetes on Windows can be a challenging process due to differences
 
 ---
 
-## Setup Instructions
+## **Setup Instructions**
 
-### Set Up a Local Kubernetes Cluster Using Minikube.
+### **Set Up a Local Kubernetes Cluster Using Minikube**
 
 **Step 1: Install Minikube**  
 
@@ -178,7 +178,7 @@ kubectl get po -A
 
 ---
 
-## References
+## **References**
 
 - [Minikube Documentation](https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download)
 - [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop)

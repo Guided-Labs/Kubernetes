@@ -1,6 +1,6 @@
 # **Set up a CI/CD Pipeline to Automate Application Deployment to Kubernetes Using Jenkins**
 
-## Table of Contents
+## **Table of Contents**
 
 1. [**Introduction**](#introduction)
 2. [**Problem Statement**](#problem-statement)
@@ -16,42 +16,42 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 CI/CD pipelines automate the process of integrating code changes, testing, and deploying applications. In this guide, we'll set up **Jenkins** on a Windows machine and configure it to deploy applications to a **Kubernetes** cluster using the **Kubernetes Plugin**. Jenkins will run the deployments in Kubernetes pods, which will allow seamless integration and testing directly within the cluster environment.
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
 Manually deploying applications to Kubernetes can be time-consuming and error-prone. By setting up a CI/CD pipeline using Jenkins and Kubernetes, we can automate the deployment process, ensuring quick, reliable, and continuous integration of code changes to our Kubernetes environment.
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 Completion of all previous lab guides (up to Lab Guide-09) is required before proceeding with Lab Guide-10.
 
 - A **Kubernetes** cluster running on **Minikube** or another environment.
 - **kubectl** configured to interact with the Kubernetes cluster.
 - A Windows machine to install Jenkins.
 
-### Software Requirements
+### **Software Requirements**
 
 - **Jenkins** (download as MSI)
 - **Java Development Kit (JDK)** 8 or later (required for Jenkins)
 - **Minikube** (if using a local Kubernetes cluster)
 - **kubectl** CLI tool for managing Kubernetes
 
-### Hardware Requirements
+### **Hardware Requirements**
 
 - Minimum 2 CPU cores
 - 4GB RAM for Minikube and Jenkins
 
 ---
 
-## Lab Guide: Setting Up CI/CD Pipeline with Jenkins and Kubernetes
+## **Lab Guide: Setting Up CI/CD Pipeline with Jenkins and Kubernetes**
 
-### Step 1: Download and Install Jenkins
+### **Step 1: Download and Install Jenkins**
 
 1. **Download Jenkins MSI**  
    Go to the Jenkins website and download the Windows installer [here](https://www.jenkins.io/download/).
@@ -108,7 +108,7 @@ Completion of all previous lab guides (up to Lab Guide-09) is required before pr
 
 ---
 
-### Step 2: Create a Kubernetes Service Account for Jenkins
+### **Step 2: Create a Kubernetes Service Account for Jenkins**
 
 1. **Create the Jenkins Namespace**  
    Run the following command to create a namespace for Jenkins:
@@ -150,7 +150,7 @@ Completion of all previous lab guides (up to Lab Guide-09) is required before pr
 
 ---
 
-### Step 3: Set Up Jenkins Kubernetes Plugin
+### **Step 3: Set Up Jenkins Kubernetes Plugin**
 
 1. **Access Jenkins**  
    Open your browser and go to `http://localhost:8080`.
@@ -202,7 +202,7 @@ Completion of all previous lab guides (up to Lab Guide-09) is required before pr
 
 ---
 
-### Step 4: Create and Run a Jenkins Pipeline
+### **Step 4: Create and Run a Jenkins Pipeline**
 
 1. **Create a New Pipeline Job**  
    - In Jenkins, click **New Item**, select **Pipeline**, and give it a name.
@@ -261,7 +261,7 @@ Completion of all previous lab guides (up to Lab Guide-09) is required before pr
 
 ---
 
-## References
+## **References**
 
 - [Jenkins Official Website](https://www.jenkins.io/)
 - [Kubernetes Official Documentation](https://kubernetes.io/docs/)

@@ -1,6 +1,6 @@
 # **Deploy Prometheus and Grafana for Monitoring Your Kubernetes Cluster**
 
-## Table of Contents
+## **Table of Contents**
 
 1. [**Introduction**](#introduction)
 2. [**Problem Statement**](#problem-statement)
@@ -16,7 +16,7 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 Prometheus and Grafana are essential tools for monitoring the health and performance of Kubernetes clusters. **Prometheus** is an open-source monitoring system that collects metrics from different sources and stores them in a time-series database. **Grafana**, on the other hand, is a powerful tool for creating dynamic dashboards based on data collected by Prometheus.
 
@@ -24,35 +24,35 @@ In this guide, you will deploy Prometheus and Grafana on a Kubernetes cluster us
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
 As Kubernetes clusters grow in complexity, it becomes increasingly important to monitor the state of your nodes, workloads, and resources. Prometheus can scrape metrics from your Kubernetes components, and Grafana allows you to visualize those metrics through customizable dashboards. This lab will walk you through deploying these tools in your Minikube cluster.
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 Completion of all previous lab guides (up to Lab Guide-07) is required before proceeding with Lab Guide-08.
 
 - A working **Minikube** cluster on Windows.
 - **kubectl** installed and configured to interact with your cluster.
 - Basic understanding of Kubernetes objects (Deployments, Services, etc.).
   
-### Software Requirements
+### **Software Requirements**
 
 - **Minikube**: v1.19 or later
 - **kubectl**: Latest version compatible with your Kubernetes setup
 - **Helm**: Latest version (for easy Prometheus and Grafana installation)
 
-### Hardware Requirements
+### **Hardware Requirements**
 
 - Minimum 2 CPU cores
 - 4GB RAM for Minikube cluster
 
 ---
 
-## Lab Guide: Deploying Prometheus and Grafana
+## **Lab Guide: Deploying Prometheus and Grafana**
 
-### Step 1: Set Up Prometheus
+### **Step 1: Set Up Prometheus**
 
 1. **Install Helm (if not installed)**  
    Helm simplifies the installation of Kubernetes applications. Download and install Helm from the official website [here](https://helm.sh/docs/intro/install/).
@@ -89,7 +89,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
 
    You should see several pods, including `prometheus-server`, `alertmanager`, and `node-exporter`.
 
-### Step 2: Set Up Grafana
+### **Step 2: Set Up Grafana**
 
 1. **Add Grafana Helm Repository**  
    Run the following command to add the Grafana Helm charts repository:
@@ -144,7 +144,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
 
    Now, open your browser and navigate to `http://localhost:3000`. The default username is `admin`, and the password is the one you retrieved in the previous step.
 
-### Step 3: Access Prometheus and Grafana Dashboards
+### **Step 3: Access Prometheus and Grafana Dashboards**
 
 1. **Access Prometheus UI**  
 
@@ -166,7 +166,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
 
    ![images](./images/k8ss-42.png)
 
-### Step 4: Configure Grafana Dashboards for Kubernetes Metrics
+### **Step 4: Configure Grafana Dashboards for Kubernetes Metrics**
 
 1. **Log in to Grafana**  
 
@@ -234,7 +234,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
 
 ---
 
-## References
+## **References**
 
 - [Prometheus Documentation](https://prometheus.io/docs/introduction/overview/)
 - [Grafana Documentation](https://grafana.com/docs/)

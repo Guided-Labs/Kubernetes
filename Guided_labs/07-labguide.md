@@ -1,6 +1,6 @@
 # **Create an Ingress Resource for External Access to Your Application**
 
-## Table of Contents
+## **Table of Contents**
 
 1. [**Introduction**](#introduction)  
 2. [**Problem Statement**](#problem-statement)  
@@ -15,19 +15,19 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 In Kubernetes, an **Ingress** resource defines rules that allow external access to services within a cluster. It acts as a gateway, managing traffic and routing requests based on defined rules. In this lab, you will set up an Ingress resource in a Minikube environment to provide external access to a sample web application.
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
 As applications within a Kubernetes cluster grow, the need for external access becomes paramount. Traditional methods, such as NodePort Services, can expose services, but they lack advanced routing capabilities. Ingress solves this problem by providing a single entry point to your applications, allowing for better management and easier access.
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 Completion of all previous lab guides (up to Lab Guide-06) is required before proceeding with Lab Guide-07.
 
 - **Minikube** installed on your Windows machine.
@@ -36,9 +36,9 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
   
 ---
 
-## Setup Instructions
+## **Setup Instructions**
 
-### Step 1: Create a Minikube Cluster
+### **Step 1: Create a Minikube Cluster**
 
 1. **Start Minikube**  
    Open PowerShell or Command Prompt as Administrator and run:
@@ -51,7 +51,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
 
    This command will create a local Kubernetes cluster.
 
-### Step 2: Enable the Ingress Controller
+### **Step 2: Enable the Ingress Controller**
 
 1. **Enable NGINX Ingress Controller**  
    Run the following command in your terminal:
@@ -73,7 +73,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
 
    You should see the NGINX Ingress controller listed and running.
 
-### Step 3: Deploy a Hello World Application
+### **Step 3: Deploy a Hello World Application**
 
 1. **Create a Deployment**  
    Deploy a sample Hello World application:
@@ -112,7 +112,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
 
    Note the `NodePort` assigned to the service.
 
-### Step 4: Create the Ingress Resource
+### **Step 4: Create the Ingress Resource**
 
 1. **Create an Ingress YAML File**  
    Create a file named `example-ingress.yaml` with the following content:
@@ -159,7 +159,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
 
    Note: It may take a minute to assign an address.
 
-### Step 5: Test the Ingress
+### **Step 5: Test the Ingress**
 
 1. **Update the Hosts File** 
 
@@ -200,7 +200,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
 
 ---
 
-## References
+## **References**
 
 - [Kubernetes Ingress Documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 - [Minikube Ingress Documentation](https://minikube.sigs.k8s.io/docs/handbook/addons/)

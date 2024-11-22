@@ -1,6 +1,6 @@
 # **Scale the Deployment Up and Down Using `kubectl scale`**
 
-## Table of Contents
+## **Table of Contents**
 
 1. [**Introduction**](#introduction)  
 2. [**Problem Statement**](#problem-statement)  
@@ -14,7 +14,7 @@
 
 ---
 
-## Introduction
+## **Introduction**
 
 This section of the Kubernetes guide focuses on the essential task of scaling applications within a Kubernetes environment. Scaling is a critical feature of Kubernetes that allows you to adjust the number of running instances of an application based on demand. This capability helps ensure that your applications remain responsive and available under varying loads.
 
@@ -26,13 +26,13 @@ In this guide, we will specifically cover how to scale an NGINX deployment using
 
 ---
 
-## Problem Statement
+## **Problem Statement**
 
 In this lab, we will explore how to scale a running application in Kubernetes. Scaling allows you to adjust the number of replicas of your application in response to traffic demands or system load. This can be done easily using the `kubectl scale` command.
 
 ---
 
-## Prerequisites
+## **Prerequisites**
 Completion of all previous lab guides (up to Lab Guide-02) is required before proceeding with Lab Guide-03.
 
 - You have a working NGINX deployment already set up in your Minikube cluster (refer to the previous lab on deploying a web application).
@@ -40,9 +40,9 @@ Completion of all previous lab guides (up to Lab Guide-02) is required before pr
 
 ---
 
-## Setup Instructions
+## **Setup Instructions**
 
-### Step 1: Check the Current Deployment Status
+### **Step 1: Check the Current Deployment Status**
 
 Before scaling the deployment, it’s important to verify the current state of your NGINX deployment.
 
@@ -58,7 +58,7 @@ Before scaling the deployment, it’s important to verify the current state of y
 
    This will show you the number of replicas currently running for your NGINX deployment.
 
-### Step 2: Scale the Deployment Up
+### **Step 2: Scale the Deployment Up**
 
 To handle increased traffic, you can scale the deployment by increasing the number of replicas.
 
@@ -82,7 +82,7 @@ To handle increased traffic, you can scale the deployment by increasing the numb
 
    You should see that the `UP-TO-DATE` and `AVAILABLE` columns reflect 5 replicas.
 
-### Step 3: Scale the Deployment Down
+### **Step 3: Scale the Deployment Down**
 
 Conversely, if you need to reduce resource usage during low traffic periods, you can scale the deployment down.
 
@@ -105,7 +105,7 @@ Conversely, if you need to reduce resource usage during low traffic periods, you
 
    The `UP-TO-DATE` and `AVAILABLE` columns should now reflect 2 replicas.
 
-### Step 4: Clean Up
+### **Step 4: Clean Up**
 
 If you no longer need the NGINX deployment, you can delete it using the following command:
 
@@ -117,7 +117,7 @@ kubectl delete deployment nginx-deployment
 
 ---
 
-## References
+## **References**
 
 - [Kubernetes Scaling Documentation](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#scaling-deployments)
 
