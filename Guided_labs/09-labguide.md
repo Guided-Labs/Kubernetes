@@ -22,9 +22,13 @@
 
 Kubernetes provides a powerful Role-Based Access Control (RBAC) mechanism to manage permissions and access to resources within your cluster. By defining roles and bindings, you can enforce fine-grained control over who can do what in your cluster. This guide will walk you through the process of creating roles, role bindings, and service accounts in a Kubernetes environment using Minikube.
 
+---
+
 ## Problem Statement
 
 Managing access permissions is critical for maintaining security in a Kubernetes cluster. Without proper RBAC configuration, unauthorized users may gain access to sensitive resources or perform actions that could compromise the stability and security of the cluster. This lab will demonstrate how to implement RBAC by creating roles, role bindings, and service accounts in your Minikube environment.
+
+---
 
 ## Prerequisites
 Completion of all previous lab guides (up to Lab Guide-08) is required before proceeding with Lab Guide-09.
@@ -43,6 +47,8 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
 - Minimum 2 CPU cores
 - 2GB RAM for Minikube cluster
 
+---
+
 ## Lab Guide: Create Roles, Role Bindings, and Service Accounts for RBAC
 
 ### Step 1: Create a Namespace
@@ -58,7 +64,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
   >
   > A **namespace** is a way to divide cluster resources between multiple users or teams. It helps to organize resources and manage them more effectively.
 
-  ![images](images/k8s-53.png)
+   ![images](./images/rbac.png)
 
 2. **Verify the Namespace**  
    Check if the namespace has been created successfully:
@@ -67,7 +73,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    kubectl get namespaces
    ```
 
-   ![images](images/k8s-54.png)
+   ![images](./images/k8s-51.png)
 
 ### Step 2: Create a Service Account
 
@@ -82,7 +88,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    >
    > A **Service Account** is an account for processes in a Pod. When a Pod runs, it can access the Kubernetes API using the Service Account credentials.
 
-   ![images](images/k8s-55.png)
+   ![images](./images/k8s-52.png)
 
 2. **Verify the Service Account**  
 
@@ -92,7 +98,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    kubectl get serviceaccounts -n rbac-example
    ```
 
-   ![images](images/k8s-56.png)
+   ![images](./images/k8s-53.png)
 
 ### Step 3: Create a Role
 
@@ -123,7 +129,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    kubectl apply -f rbac-role.yaml
    ```
 
-   ![images](images/k8s-57.png)
+   ![images](./images/k8s-54.png)
 
 3. **Verify the Role**  
    Check if the role has been created:
@@ -132,7 +138,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    kubectl get roles -n rbac-example
    ```
 
-   ![images](images/k8s-58.png)
+   ![images](./images/k8s-55.png)
 
 ### Step 4: Create a RoleBinding
 
@@ -166,7 +172,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    kubectl apply -f rbac-rolebinding.yaml
    ```
 
-   ![images](images/k8s-59.png)
+   ![images](./images/k8s-56.png)
 
 3. **Verify the RoleBinding**  
    Check if the role binding has been created:
@@ -175,7 +181,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    kubectl get rolebindings -n rbac-example
    ```
 
-   ![images](images/k8s-60.png)
+   ![images](./images/k8s-57.png)
 
 ### Step 5: Deploy a Simple Application
 
@@ -190,7 +196,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    >
    > This command creates a Pod named `nginx` using the Nginx image, which will be used to verify that the `rbac-user` service account can access the resources.
 
-   ![images](images/k8s-61.png)
+   ![images](./images/k8s-58.png)
 
 2. **Verify the Nginx Pod**  
 
@@ -200,7 +206,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    kubectl get pods -n rbac-example
    ```
 
-   ![images](images/k8s-62.png)
+   ![images](./images/k8s-59.png)
 
 ### Step 6: Verify RBAC Configuration
 
@@ -221,8 +227,7 @@ Completion of all previous lab guides (up to Lab Guide-08) is required before pr
    kubectl get pods --namespace rbac-example --token=$TOKEN
    ```
 
-   ![images](images/k8s-63.png)
-
+   ![images](./images/k8s-60.png)
    If the RBAC configuration is correct, you should see the Nginx pod listed. If no pods are present in the `rbac-example` namespace, you will receive a message saying "No resources found in rbac-example namespace." This is expected if you have not deployed any resources yet.
 
 ---

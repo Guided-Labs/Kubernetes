@@ -23,15 +23,21 @@ This guide is designed to help users set up and deploy web applications in a loc
 * How to deploy web applications using Kubernetes Deployment and manage their lifecycle.
 * How to expose your web applications to internal or external traffic using Kubernetes Service.
 
+---
+
 ## Problem Statement
 
 In this lab, we will deploy an NGINX-based web application on a local Kubernetes cluster using **Minikube**. We will create a Kubernetes Deployment to manage the application’s lifecycle and a Service to expose it.
+
+---
 
 ## Prerequisites
 Completion of all previous lab guides (up to Lab Guide-01) is required before proceeding with Lab Guide-02.
 
 - Minikube is running on your Windows system.
 - `kubectl` is installed and configured to interact with your Minikube cluster.
+
+---
 
 ## Setup Instructions
 
@@ -78,6 +84,8 @@ We will start by deploying NGINX using a Kubernetes Deployment. The Deployment e
    ```bash
    kubectl apply -f nginx-deployment.yaml
    ```
+   ![images](./images/k8s-11.png)
+
 
 3. **Verify the Deployment**
 
@@ -88,7 +96,7 @@ We will start by deploying NGINX using a Kubernetes Deployment. The Deployment e
    kubectl get pods
    ```
 
-   ![image](images/k8s-5.png)
+   ![images](./images/k8s-12.png)
 
    You should see three pods running for the `nginx-deployment`.
 
@@ -136,7 +144,7 @@ Next, we will create a Service to expose the NGINX application inside the cluste
    kubectl get services
    ```
 
-   ![images](images/k8s-6.png)
+   ![images](./images/k8s-13.png)
 
    You should see the `nginx-service` listed.
 
@@ -146,19 +154,22 @@ Since this service is internal to the cluster, you can use `kubectl` to forward 
 
 1. **Port-forward the Service** 
 
-   Run the following command to forward a local port (e.g., 8080) to the NGINX pod:
+   Run the following command to forward a local port (e.g., 8085) to the NGINX pod:
 
    ```bash
-   kubectl port-forward service/nginx-service 8080:80
+   kubectl port-forward service/nginx-service 8085:80
    ```
+   
+   ![images](./images/k8s-14.png)
 
-   ![images](images/k8s-8.png)
 
 2. **Open NGINX in Your Browser** 
 
-   Open your browser and navigate to `http://localhost:8080`. You should see the default NGINX welcome page.
+   Open your browser and navigate to `http://localhost:8085`. You should see the default NGINX welcome page.
 
-   ![images](images/k8s-7.png)
+   ![images](./images/k8s-15.png)
+
+---
 
 ## References
 

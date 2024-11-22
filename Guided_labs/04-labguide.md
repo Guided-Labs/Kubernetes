@@ -25,11 +25,15 @@ In this lab, you will learn how to:
 - Create a Secret to store sensitive information.
 - Use both ConfigMaps and Secrets within a Kubernetes pod to configure and secure your application.
 
+---
+
 ## Problem Statement
 
 As your applications grow, it becomes important to separate the application code from its configuration data. You may also need to store sensitive information securely, without hardcoding it in your application.
 
 This lab aims to show you how to manage this external configuration through **ConfigMaps** and **Secrets**, and how to use them inside a pod to ensure that your applications can access configuration data and secrets securely.
+
+---
 
 ## Prerequisites
 Completion of all previous lab guides (up to Lab Guide-03) is required before proceeding with Lab Guide-04.
@@ -37,6 +41,8 @@ Completion of all previous lab guides (up to Lab Guide-03) is required before pr
 - A running Kubernetes cluster on Minikube.
 - `kubectl` installed and configured to interact with your Minikube cluster.
 - Basic understanding of Kubernetes pods and deployments.
+
+---
 
 ## Setup Instructions
 
@@ -76,8 +82,7 @@ A ConfigMap is a way to store key-value pairs for configuration. In this example
    ```bash
    kubectl get configmaps
    ```
-
-   ![image](images/k8s-13.png)
+   ![images](./images/k8s-20.png)
 
 ### Step 2: Create a Secret
 
@@ -116,13 +121,15 @@ A Secret is used to store sensitive information like passwords or API keys. We w
    kubectl get secrets
    ```
 
+   ![images](./images/k8s-21.png)
+   
    You can also decode the secret values if needed:
 
    ```bash
    kubectl get secret nginx-secret -o yaml
    ```
 
-   ![image](images/k8s-14.png)
+   ![images](./images/k8s-22.png)
 
 ### Step 3: Use ConfigMaps and Secrets in a Pod
 
@@ -185,7 +192,8 @@ Next, we'll create an NGINX pod that uses the ConfigMap and Secret we just creat
    kubectl get pods
    ```
 
-   ![image](images/k8s-15.png)
+   ![images](./images/k8s-23.png)
+   
 
 4. **Inspect the Environment Variables and Secrets**  
 
@@ -202,8 +210,8 @@ Next, we'll create an NGINX pod that uses the ConfigMap and Secret we just creat
    echo $LOG_LEVEL
    ```
 
-   ![image](images/k8s-16.png)
-
+   ![images](./images/k8s-24.png)
+   
    Check the contents of the secret file:
 
    ```bash
@@ -211,8 +219,8 @@ Next, we'll create an NGINX pod that uses the ConfigMap and Secret we just creat
    cat /etc/nginx/secret/password
    ```
 
-   ![image](images/k8s-17.png)
-   
+   ![images](./images/k8s-25.png)   
+
 ---
 
 ## References

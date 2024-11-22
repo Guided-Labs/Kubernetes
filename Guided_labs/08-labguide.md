@@ -22,9 +22,13 @@ Prometheus and Grafana are essential tools for monitoring the health and perform
 
 In this guide, you will deploy Prometheus and Grafana on a Kubernetes cluster using Minikube, enabling real-time monitoring of cluster metrics.
 
+---
+
 ## Problem Statement
 
 As Kubernetes clusters grow in complexity, it becomes increasingly important to monitor the state of your nodes, workloads, and resources. Prometheus can scrape metrics from your Kubernetes components, and Grafana allows you to visualize those metrics through customizable dashboards. This lab will walk you through deploying these tools in your Minikube cluster.
+
+---
 
 ## Prerequisites
 Completion of all previous lab guides (up to Lab Guide-07) is required before proceeding with Lab Guide-08.
@@ -44,6 +48,8 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
 - Minimum 2 CPU cores
 - 4GB RAM for Minikube cluster
 
+---
+
 ## Lab Guide: Deploying Prometheus and Grafana
 
 ### Step 1: Set Up Prometheus
@@ -59,7 +65,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
    helm repo update
    ```
 
-   ![images](images/k8s-32.png)
+   ![images](./images/k8s-16.png)
 
 3. **Install Prometheus**  
    Now, install Prometheus using the Helm chart:
@@ -68,7 +74,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
    helm install prometheus prometheus-community/prometheus --namespace monitoring --create-namespace
    ```
 
-   ![images](images/k8s-33.png)
+   ![images](./images/k8s-17.png)
 
    This will create a `monitoring` namespace and install Prometheus in your cluster.
 
@@ -79,7 +85,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
    kubectl get pods -n monitoring
    ```
 
-   ![images](images/k8s-34.png)
+   ![images](./images/k8s-18.png)
 
    You should see several pods, including `prometheus-server`, `alertmanager`, and `node-exporter`.
 
@@ -93,7 +99,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
    helm repo update
    ```
 
-   ![images](images/k8s-35.png)
+   ![images](./images/k8s-19.png)
 
 2. **Install Grafana**  
    Use the Helm chart to install Grafana:
@@ -102,8 +108,8 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
    helm install grafana grafana/grafana --namespace monitoring
    ```
 
-   ![images](images/k8s-36.png)
-
+   ![images](./images/k8s-20.png)
+   
    This will deploy Grafana in the same `monitoring` namespace.
 
 3. **Verify Grafana Deployment**  
@@ -113,7 +119,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
    kubectl get pods -n monitoring
    ```
 
-   ![images](images/k8s-37.png)
+   ![images](./images/k8s-21.png)
 
    You should see a `grafana` pod running.
 
@@ -125,8 +131,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
    kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | ForEach-Object { [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($_)) }
    ```
 
-   ![images](images/k8s-38.png)
-
+   ![images](./images/k8s-22.png)
 5. **Expose Grafana for External Access**  
 
    To access Grafana from your local machine, run:
@@ -135,7 +140,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
    kubectl port-forward --namespace monitoring svc/grafana 3000:80
    ```
 
-   ![images](images/k8s-39.png)
+   ![images](./images/k8s-23.png)
 
    Now, open your browser and navigate to `http://localhost:3000`. The default username is `admin`, and the password is the one you retrieved in the previous step.
 
@@ -149,7 +154,9 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
    kubectl port-forward --namespace monitoring svc/prometheus-server 9090:80
    ```
 
-   ![images](images/k8s-41.png)
+   ![images](./images/image-24.png)
+
+   ![images](./images/image-25.png)
 
    Visit `http://localhost:9090` to access the Prometheus dashboard. You can explore the metrics that are being scraped from your cluster.
 
@@ -157,7 +164,7 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
 
    Open your browser and navigate to `http://localhost:3000`. Log in using your admin credentials (username: `admin`, password: the one you retrieved earlier).
 
-   ![images](images/k8s-42.png)
+   ![images](./images/k8ss-42.png)
 
 ### Step 4: Configure Grafana Dashboards for Kubernetes Metrics
 
@@ -165,43 +172,43 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
 
    Open your browser and navigate to `http://localhost:3000`. Log in using your admin credentials (username: `admin`, password: the one you retrieved earlier).
 
-   ![images](images/k8s-42.png)
+   ![images](./images/k8ss-42.png)
 
 2. **Navigate to "Connections" Section** 
 
    - From the left-hand menu, click on **Connections** (this might be called "Connections" or "Data Sources" depending on your version).
    - In the **Connections** tab, click on **Add new connection**.
 
-   ![images](images/k8s-43.png)
+   ![images](./images/k8ss-43.png)
 
 3. **Search for Prometheus**  
 
    - In the search bar that appears, type **Prometheus**.
    - Select **Prometheus** from the list of available data sources.
 
-   ![images](images/k8s-44.png)
+   ![images](./images/k8ss-44.png)
 
 4. **Configure the Prometheus Data Source**  
 
    - On the right corner of the screen, click **Add new data source**.
 
-   ![images](images/k8s-45.png)
+   ![images](./images/k8ss-45.png)
 
    - In the **HTTP URL** field (under **Connection details**), 
      
      If you are accessing Prometheus via its service within the cluster, you should use the service URL instead: `http://prometheus-server.monitoring.svc.cluster.local:80`.
 
-   ![images](images/k8s-46.png)  
+   ![images](./images/k8ss-46.png)  
 
 5. **Save & Test**  
 
    - Scroll to the bottom of the page and click **Save & Test** to verify the connection to Prometheus.
 
-    ![images](images/k8s-47.png) 
+    ![images](./images/k8ss-47.png) 
 
    - You should see a success message indicating that Grafana successfully connected to Prometheus.
 
-   ![images](images/k8s-48.png) 
+   ![images](./images/k8ss-48.png) 
 
 6. **Import Pre-built Kubernetes Dashboards**  
 
@@ -209,21 +216,21 @@ Completion of all previous lab guides (up to Lab Guide-07) is required before pr
 
    - In the Grafana UI, click **+ > Import Dashboard**.
 
-    ![images](images/k8s-49.png) 
+    ![images](./images/k8ss-49.png) 
 
    - Use the following dashboard ID: `315` and click `load`. This is a popular Kubernetes cluster monitoring dashboard.
 
-    ![images](images/k8s-50.png)
+    ![images](./images/k8ss-50.png)
 
    - select the Prometheus data source, and click **Import**.
 
-   ![images](images/k8s-51.png)
+   ![images](./images/k8ss-51.png)
 
 7. **View Your Kubernetes Metrics**  
 
    After importing the dashboard, you'll be able to see metrics like CPU usage, memory utilization, pod status, and more for your Kubernetes cluster.
 
-   ![images](images/k8s-52.png)
+   ![images](./images/k8ss-52.png)
 
 ---
 

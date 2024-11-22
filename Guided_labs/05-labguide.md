@@ -22,15 +22,21 @@ In Kubernetes, **PersistentVolumes (PV)** and **PersistentVolumeClaims (PVC)** p
 
 In this lab, we will create a PersistentVolume and a PersistentVolumeClaim, and then use the PVC in a Kubernetes pod.
 
+---
+
 ## Problem Statement
 
 Many applications require persistent data storage that survives pod restarts and scaling events. To solve this, Kubernetes provides PersistentVolumes (PVs) and PersistentVolumeClaims (PVCs) as a means to allocate and consume storage resources within the cluster. This lab will guide you through the steps required to configure persistent storage for an NGINX application.
+
+---
 
 ## Prerequisites
 Completion of all previous lab guides (up to Lab Guide-04) is required before proceeding with Lab Guide-05.
 
 - A running Kubernetes cluster on Minikube.
 - `kubectl` installed and configured to interact with your Minikube cluster.
+
+---
 
 ## Setup Instructions
 
@@ -75,7 +81,8 @@ A **PersistentVolume** represents a piece of storage in the cluster. This storag
    kubectl get pv
    ```
 
-   ![image](images/k8s-18.png)
+   ![images](./images/k8s-26.png)
+
 
 ### Step 2: Create a PersistentVolumeClaim (PVC)
 
@@ -119,7 +126,7 @@ A **PersistentVolumeClaim** is a request for storage by a user. The PVC must mat
    kubectl get pvc
    ```
 
-   ![image](images/k8s-19.png)
+   ![images](./images/k8s-27.png)
 
    The status should show `Bound`, meaning the PVC has successfully claimed the PV.
 
@@ -172,6 +179,8 @@ Now that the PVC is created and bound to the PV, we can use it in a pod to provi
    kubectl get pods
    ```
 
+   ![images](./images/k8s-28.png)
+
 4. **Test the Persistent Storage**
 
    You can now write files to the `/mnt/data` directory on the Minikube node, and they will persist even if the pod is deleted or restarted. 
@@ -182,18 +191,19 @@ Now that the PVC is created and bound to the PV, we can use it in a pod to provi
    kubectl exec -it nginx-pv-pod -- /bin/bash
    echo "Hello, Kubernetes!" > /usr/share/nginx/html/index.html
    ```
+   ![images](./images/k8s-29.png)
 
    Now, access the NGINX pod using port-forwarding to see the content you just created:
 
    ```bash
-   kubectl port-forward nginx-pv-pod 8080:80
+   kubectl port-forward nginx-pv-pod 8085:80
    ```
 
-   ![image](images/k8s-20.png)
+   ![images](./images/k8s-30.png)
 
-   Open your browser and navigate to `http://localhost:8080`. You should see "Hello, Kubernetes!" displayed.
+   Open your browser and navigate to `http://localhost:8085`. You should see "Hello, Kubernetes!" displayed.
 
-   ![image](images/k8s-21.png)
+   ![images](./images/k8s-31.png)
 
 ---
 

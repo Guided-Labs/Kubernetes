@@ -24,15 +24,21 @@ In this guide, we will specifically cover how to scale an NGINX deployment using
 - **Monitor the status** of your deployment before and after scaling to understand the impact of your changes.
 - **Understand the implications of scaling**, including how it can enhance performance and resource utilization.
 
+---
+
 ## Problem Statement
 
 In this lab, we will explore how to scale a running application in Kubernetes. Scaling allows you to adjust the number of replicas of your application in response to traffic demands or system load. This can be done easily using the `kubectl scale` command.
+
+---
 
 ## Prerequisites
 Completion of all previous lab guides (up to Lab Guide-02) is required before proceeding with Lab Guide-03.
 
 - You have a working NGINX deployment already set up in your Minikube cluster (refer to the previous lab on deploying a web application).
 - You have `kubectl` installed and configured to interact with your Minikube cluster.
+
+---
 
 ## Setup Instructions
 
@@ -48,7 +54,7 @@ Before scaling the deployment, it’s important to verify the current state of y
    kubectl get deployments
    ```
 
-   ![images](images/k8s-9.png)
+   ![images](./images/k8s-16.png)
 
    This will show you the number of replicas currently running for your NGINX deployment.
 
@@ -72,7 +78,7 @@ To handle increased traffic, you can scale the deployment by increasing the numb
    kubectl get deployments
    ```
 
-   ![images](images/k8s-10.png)
+   ![images](./images/k8s-17.png)
 
    You should see that the `UP-TO-DATE` and `AVAILABLE` columns reflect 5 replicas.
 
@@ -95,8 +101,7 @@ Conversely, if you need to reduce resource usage during low traffic periods, you
    ```bash
    kubectl get deployments
    ```
-
-   ![images](images/k8s-11.png)
+   ![images](./images/k8s-18.png)
 
    The `UP-TO-DATE` and `AVAILABLE` columns should now reflect 2 replicas.
 
@@ -108,7 +113,9 @@ If you no longer need the NGINX deployment, you can delete it using the followin
 kubectl delete deployment nginx-deployment
 ```
 
-![images](images/k8s-12.png)
+![images](./images/k8s-19.png)
+
+---
 
 ## References
 

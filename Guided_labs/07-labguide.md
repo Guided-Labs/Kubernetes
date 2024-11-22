@@ -19,9 +19,13 @@
 
 In Kubernetes, an **Ingress** resource defines rules that allow external access to services within a cluster. It acts as a gateway, managing traffic and routing requests based on defined rules. In this lab, you will set up an Ingress resource in a Minikube environment to provide external access to a sample web application.
 
+---
+
 ## Problem Statement
 
 As applications within a Kubernetes cluster grow, the need for external access becomes paramount. Traditional methods, such as NodePort Services, can expose services, but they lack advanced routing capabilities. Ingress solves this problem by providing a single entry point to your applications, allowing for better management and easier access.
+
+---
 
 ## Prerequisites
 Completion of all previous lab guides (up to Lab Guide-06) is required before proceeding with Lab Guide-07.
@@ -30,6 +34,8 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
 - **kubectl** command-line tool installed and configured to communicate with your Minikube cluster.
 - Ensure your Minikube version is compatible (at least Kubernetes v1.19).
   
+---
+
 ## Setup Instructions
 
 ### Step 1: Create a Minikube Cluster
@@ -41,7 +47,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    minikube start
    ```
 
-   ![images](images/k8s-64.png)
+   ![images](./images/k8s-37.png)
 
    This command will create a local Kubernetes cluster.
 
@@ -54,7 +60,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    minikube addons enable ingress
    ```
 
-   ![images](images/k8s-65.png)
+   ![images](./images/k8s-38.png)
 
 2. **Verify the Ingress Controller is Running**  
    After a few moments, verify that the Ingress controller is running with:
@@ -63,7 +69,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    kubectl get pods -n ingress-nginx
    ```
 
-   ![images](images/k8s-106.png)
+   ![images](./images/k8s-40.png)
 
    You should see the NGINX Ingress controller listed and running.
 
@@ -76,7 +82,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
    ```
 
-   ![images](images/k8s-66.png)
+   ![images](./images/k8s-41.png)
 
    Confirm the deployment is successful by running:
 
@@ -84,7 +90,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    kubectl get deployment web
    ```
 
-   ![images](images/k8s-67.png)
+   ![images](./images/k8s-42.png)
 
 2. **Expose the Deployment**  
    Expose the deployment with NodePort:
@@ -93,7 +99,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    kubectl expose deployment web --type=NodePort --port=8080
    ```
 
-   ![images](images/k8s-68.png)
+   ![images](./images/k8s-43.png)
 
 3. **Verify the Service**  
    Check the service to ensure it's available:
@@ -102,7 +108,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    kubectl get svc web
    ```
 
-   ![images](images/k8s-69.png)
+   ![images](./images/k8s-44.png)
 
    Note the `NodePort` assigned to the service.
 
@@ -140,7 +146,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    kubectl apply -f example-ingress.yaml
    ```
 
-   ![images](images/k8s-70.png)
+   ![images](./images/k8s-45.png)
 
 3. **Verify the Ingress**  
    Check the status of the Ingress:
@@ -149,7 +155,7 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    kubectl get ingress
    ```
 
-   ![images](images/k8s-71.png)
+   ![images](./images/k8s-46.png)
 
    Note: It may take a minute to assign an address.
 
@@ -159,9 +165,8 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
 
    Open the `hosts` file with administrative rights (located at `C:\Windows\System32\drivers\etc\hosts`) and add the following line using the IP address returned by `minikube ip`:
 
-   ![images](images/k8s-72.png)
-
-   ![images](images/k8s-73.png)  
+   
+   ![images](./images/k8s-50.png) 
    
    ```
    <minikube-ip> hello-world.example
@@ -177,6 +182,8 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    minikube service web
    ```
 
+   ![images](./images/k8s-47.png)
+   
    The above command will open the `sample application` .
 
    **The output is similar to:**
@@ -187,8 +194,8 @@ Completion of all previous lab guides (up to Lab Guide-06) is required before pr
    Hostname: web-56b9569dcc-48zbn
    ```
 
-   ![images](images/k8s-107.png)
-
+   ![images](./images/k8s-48.png)
+   
    > **Note:** On Linux System we can test ingress using `Minikube IP` address instead of Localhost i.e., `127.0.0.1`
 
 ---

@@ -62,15 +62,21 @@ Setting up Kubernetes on Windows can be a challenging process due to differences
        
     ```powershell
     New-Item -Path 'C:\' -Name 'minikube' -ItemType Directory -Force
+    ```
+
+    ![images](./images/k8s.png)
+    
+    ```powershell
     Invoke-WebRequest -OutFile 'C:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
     ```
 
-    ![images](images/k8s-1.png)
+    ![images](./images/k8s-1.png)
 
   Make sure to run PowerShell as Administrator to execute these commands.
 
 - **Add Minikube to Your PATH**: 
-
+  To add the Minikube path (`C:/minikube`) to the system and user environment variables, open the Environment Variables settings, edit the "Path" variable in both the System and User sections, and add `C:/minikube`. Save the changes by clicking "OK" in each dialog box.
+  
   After downloading, you need to add the Minikube binary to your system's PATH. Run the following command in PowerShell:
      
   ```powershell
@@ -80,7 +86,7 @@ Setting up Kubernetes on Windows can be a challenging process due to differences
   }
   ```
 
-  ![images](images/k8s-2.png)
+    ![images](./images/k8s-2.png)
 
 - **Restart Your Terminal**:
 
@@ -95,6 +101,8 @@ Setting up Kubernetes on Windows can be a challenging process due to differences
     ```bash
     curl.exe -LO "https://dl.k8s.io/release/v1.31.0/bin/windows/amd64/kubectl.exe"
     ```
+    ![images](./images/k8s-3.png)
+
 
 - **(Optional) Validate the Binary**  
    
@@ -104,6 +112,7 @@ Setting up Kubernetes on Windows can be a challenging process due to differences
     ```bash
     curl.exe -LO "https://dl.k8s.io/v1.31.0/bin/windows/amd64/kubectl.exe.sha256"
     ```
+    ![images](./images/k8s-4.png)
 
 - **Validate the kubectl Binary**  
    
@@ -113,12 +122,15 @@ Setting up Kubernetes on Windows can be a challenging process due to differences
     CertUtil -hashfile kubectl.exe SHA256
     type kubectl.exe.sha256
     ```
+    ![images](./images/k8s-5.png)
    
   - Alternatively, use PowerShell to automate the verification:
      
     ```powershell
     $(Get-FileHash -Algorithm SHA256 .\kubectl.exe).Hash -eq $(Get-Content .\kubectl.exe.sha256)
     ```
+    ![images](./images/k8s-6.png)
+
 
 - **Test kubectl Installation** 
 
@@ -127,12 +139,15 @@ Setting up Kubernetes on Windows can be a challenging process due to differences
     ```bash
     kubectl version --client
     ```
+    ![images](./images/k8s-7.png)
+  
 
   - For detailed version information, use:
      
     ```bash
     kubectl version --client --output=yaml
     ```
+    ![images](./images/k8s-8.png)
 
 **Step 3: Start your cluster**:
 
@@ -142,7 +157,7 @@ Setting up Kubernetes on Windows can be a challenging process due to differences
   minikube start
   ```
 
-  ![images](images/k8s-3.png)
+  ![images](./images/k8s-9.png)
 
 **Step 4: Interact with your cluster**
 
@@ -159,7 +174,7 @@ kubectl get po -A
   - `po`: This stands for "pods." Pods are the smallest deployable units in Kubernetes, representing a single instance of a running process in your cluster.
   - `-A`: This flag stands for "all namespaces." It allows you to view pods from all namespaces in your cluster.
 
-  ![images](images/k8s-4.png)
+  ![images](./images/k8s-10.png)
 
 ---
 

@@ -25,6 +25,8 @@ With NetworkPolicies, you can:
 
 In this lab, you will learn how to create a **NetworkPolicy** to restrict pod-to-pod communication, allowing only specific traffic to flow between pods.
 
+---
+
 ## Problem Statement
 
 By default, Kubernetes allows unrestricted communication between all pods in a cluster. However, many applications require more restrictive network configurations. For example, you may want to prevent certain pods from receiving traffic from other pods or limit which services can communicate with a backend database. NetworkPolicies solve this by enabling fine-grained control over network traffic between pods.
@@ -33,12 +35,16 @@ In this lab, we will create an example where:
 - Two pods are deployed in the same namespace.
 - Network traffic between the pods is restricted using a NetworkPolicy, allowing only specific pods to communicate.
 
+---
+
 ## Prerequisites
 Completion of all previous lab guides (up to Lab Guide-05) is required before proceeding with Lab Guide-06.
 
 - A running Kubernetes cluster on Minikube.
 - `kubectl` installed and configured to interact with your Minikube cluster.
 - Basic understanding of Kubernetes pods and networking concepts.
+
+---
 
 ## Setup Instructions
 
@@ -100,8 +106,14 @@ First, we will deploy two simple NGINX pods in the same namespace. One will act 
 
    ```bash
    kubectl apply -f nginx-server-deployment.yaml
+   ```
+   ![images](./images/k8s-32.png)
+
+
+   ```bash
    kubectl apply -f nginx-client-deployment.yaml
    ```
+   ![images](./images/k8s-33.png)
 
 4. **Verify the Pods are Running**  
    Ensure both pods are running by listing all the pods in your namespace:
@@ -110,14 +122,14 @@ First, we will deploy two simple NGINX pods in the same namespace. One will act 
    kubectl get pods
    ```
 
-   ![image](images/k8s-22.png)
+   ![images](./images/pod-1.png)
 
 ### Step 2: Create a Service for the NGINX Server
 
 In Kubernetes, pods are generally ephemeral, and DNS names for individual pods are not resolvable directly. To ensure that other pods can communicate with the `nginx-server` pod by name, we need to create a Service. The Service provides a stable DNS name and IP address for the NGINX server.
 
 1. **Create the Service YAML**  
-   Create a file named `nginx-service.yaml` with the following content:
+   Create a file named `nginx_service.yaml` with the following content:
 
    ```yaml
    apiVersion: v1
@@ -141,7 +153,7 @@ In Kubernetes, pods are generally ephemeral, and DNS names for individual pods a
    Run the following command to create the Service:
 
    ```bash
-   kubectl apply -f nginx-service.yaml
+   kubectl apply -f nginx_service.yaml
    ```
 
 3. **Verify the Service**  
@@ -151,9 +163,9 @@ In Kubernetes, pods are generally ephemeral, and DNS names for individual pods a
    kubectl get svc
    ```
 
-   ![image](images/k8s-26.png)
+   ![images](./images/k8s-35.png)
 
-   You should see the `nginx-service` listed, which will expose the NGINX server pod to other pods via the DNS name `nginx-service`.
+   You should see the `nginx_service` listed, which will expose the NGINX server pod to other pods via the DNS name `nginx_service`.
 
 ---
 
@@ -204,22 +216,32 @@ Now that the pods are running, we will create a NetworkPolicy that allows traffi
    kubectl get networkpolicies
    ```
 
-   ![image](images/k8s-23.png)
+   ![images](./images/networkpolicy.png)
 
 ### Step 4: Test the NetworkPolicy
 
 With the NetworkPolicy in place, we can now test its effect on pod-to-pod communication.
 
 1. **Test from the NGINX Client**  
-   Exec into the NGINX client pod and try to access the NGINX server:
+   
+   You can get the IP address of the nginx server from the output of the following command:
 
    ```bash
-   kubectl exec -it <nginx-client-pod> -- wget --spider --timeout=1 nginx-server
+   kubectlget pod nginx-server-5df8f66fb7-24wzl -o wide
    ```
 
-   ![image](images/k8s-24.png)
+   ![images](./images/pod-2.png)
+
+   
+   Exec into the NGINX client pod and try to access the NGINX server using the IP address obtained earlier (10.244.0.67):
+
+   ```
+   kubectl exec -it <nginx-client-pod> -- wget --spider --timeout=1 <nginx-server-ip>
+   ```
+   ![images](./images/pod-3.png)
 
    This request should succeed because the NetworkPolicy allows traffic from the client to the server.
+
 
 2. **Test from a Different Pod**  
    Deploy another pod that does not match the `nginx-client` label, such as a `busybox` pod:
@@ -227,16 +249,37 @@ With the NetworkPolicy in place, we can now test its effect on pod-to-pod commun
    ```bash
    kubectl run busybox --image=busybox --command -- sleep 3600
    ```
-
+   ![images](./images/pod-4.png)
+   
    Now, try to access the NGINX server from this `busybox` pod:
 
-   ```bash
-   kubectl exec -it busybox -- wget --spider --timeout=1 nginx-server
+   You can get the IP address of the nginx server from the output of the following command:
+  
+   ```bash 
+   kubectl describe svc nginx-service
    ```
+   This command provides detailed information about the nginx service, including its IP address.
+  
+   ![images](./images/pod-5.png)
 
-   ![image](images/k8s-25.png)
+   
+   ```bash
+   kubectl get pods --show-labels
+   ```
+   ![images](./images/pod-6.png)
+  
+   
+   Use the command `kubectl exec -it busybox -- wget --spider --timeout=1 10.109.249.60`, where `10.109.249.60` is the IP address you get from the command `kubectl describe svc nginx-service`.
+
+   ```bash
+   kubectl exec -it busybox -- wget --spider --timeout=1 <nginx-server-ip>
+   ```
+   ![images](./images/pod-7.png)
+  
 
    This request should fail because the NetworkPolicy only allows traffic from the `nginx-client` pod.
+
+---
 
 ## References
 
